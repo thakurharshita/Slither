@@ -24,6 +24,10 @@ pip install pygame
 
 (NOTE: IF YOU WANT TO KNOW MUCH MORE CLEARLY ABOUT THE INSTALLATION, VISIT THE LINK PROVIDED ABOVE)
 
+# How to download files from github?
+
+Just click on the top-right button saying Clone or Download.
+
 # CREDITS : OPENGAMEART.ORG
 
 # HOPE YOU ENJOY THE GAME :-)
