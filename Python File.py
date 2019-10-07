@@ -64,9 +64,9 @@ def pause():
 
 		clock.tick(10)
 
-def score(score):
+def score(score_str):
 
-	text = extrasmallfont.render("SCORE: " + str(score), True, white)
+	text = extrasmallfont.render(score_str, True, white)
 	win.blit(text, [0, 0])
 	
 
@@ -161,6 +161,8 @@ def gameloop():
 	snakelist = []
 	snakelength = 1
 
+	current_score = 0
+
 	randappleX, randappleY = randapplegen()	
 
 	while  not g_exit:
@@ -241,9 +243,9 @@ def gameloop():
 		snake(block, snakelist)
 
 		try:
-			score(hw1.getScore())
+			score(hw1.getScore(current_score))
 		except:
-			score(0)
+			score("No Score")
 
 		pygame.display.update()
 
@@ -254,14 +256,14 @@ def gameloop():
 				randappleX, randappleY = randapplegen()	
 				pygame.mixer.Sound.play(bite)
 				snakelength += 1
-				hw1.addScore()
+				current_score = hw1.addScore(current_score)
 
 			elif y + block > randappleY and y + block < randappleY + apple:
 
 				randappleX, randappleY = randapplegen()	
 				pygame.mixer.Sound.play(bite)
 				snakelength += 1
-				hw1.addScore()
+				current_score = hw1.addScore(current_score)
 
 
 		clock.tick(FPS)	
