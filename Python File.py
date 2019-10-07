@@ -26,6 +26,7 @@ crash = pygame.mixer.Sound('slime10.wav')
 
 clock = pygame.time.Clock()
 
+current_score = 0
 block = 20
 apple = 30
 
@@ -148,7 +149,7 @@ def gameloop():
 	pygame.mixer.music.play(-1)
 
 
-	global direction
+	global direction, current_score
 	g_exit = False
 	g_over = False
 
@@ -161,7 +162,6 @@ def gameloop():
 	snakelist = []
 	snakelength = 1
 
-	current_score = 0
 
 	randappleX, randappleY = randapplegen()	
 
@@ -218,6 +218,7 @@ def gameloop():
 		if x >= width or x < 0 or y >= height or y < 0:
 			g_over = True
 			pygame.mixer.Sound.play(crash)
+			current_score = 0
 
 
 		y += ychange
