@@ -1,5 +1,6 @@
 import pygame
 import random
+import HomeWork1 as hw1
 pygame.init()
 
 width = 1000
@@ -25,9 +26,14 @@ crash = pygame.mixer.Sound('slime10.wav')
 
 clock = pygame.time.Clock()
 
-apple = 30
 block = 20
-FPS = 15
+apple = 30
+
+try:
+	FPS = hw1.getSpeed()
+except:
+	FPS = 3
+
 
 direction = "right"
 
@@ -59,6 +65,7 @@ def pause():
 		clock.tick(10)
 
 def score(score):
+
 	text = extrasmallfont.render("SCORE: " + str(score), True, white)
 	win.blit(text, [0, 0])
 	
@@ -233,7 +240,10 @@ def gameloop():
 
 		snake(block, snakelist)
 
-		score(snakelength-1)
+		try:
+			score(hw1.getScore())
+		except:
+			score(0)
 
 		pygame.display.update()
 
@@ -244,12 +254,14 @@ def gameloop():
 				randappleX, randappleY = randapplegen()	
 				pygame.mixer.Sound.play(bite)
 				snakelength += 1
+				hw1.addScore()
 
 			elif y + block > randappleY and y + block < randappleY + apple:
 
 				randappleX, randappleY = randapplegen()	
 				pygame.mixer.Sound.play(bite)
 				snakelength += 1
+				hw1.addScore()
 
 
 		clock.tick(FPS)	
